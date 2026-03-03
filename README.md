@@ -1,4 +1,4 @@
-# CustomAgent-Labs
+# GitHub Custom Agents - Hands on Labs
 
 Starter repository for the **GitHub Copilot Custom Agents** hands-on labs.
 
