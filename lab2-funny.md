@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this lab you will create a **multi-agent pipeline** using GitHub Copilot Custom Agents. The pipeline is called the **Funny Agent** — an **Orchestrator** that coordinates two **Subagents**:
+In this lab you will create a **multi-agent pipeline** using GitHub Copilot Custom Agents. The pipeline is called the **Funny Agent** - an **Orchestrator** that coordinates two **Subagents**:
 
 | Agent       | Archetype    | Job                                                          |
 | ----------- | ------------ | ------------------------------------------------------------ |
