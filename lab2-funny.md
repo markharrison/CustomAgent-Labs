@@ -30,6 +30,8 @@ The user gives the Funny Agent a subject (e.g. "cats", "Kubernetes", "Monday mor
 | **GitHub Copilot**               | Active subscription.                                      |
 | **VS Code**                      | Always use the latest.                                    |
 
+To read more about Subagents in VSCode - check [https://code.visualstudio.com/docs/copilot/agents/subagents](https://code.visualstudio.com/docs/copilot/agents/subagents)
+
 ---
 
 ## Step 1 - Open the Starter Repository in VS Code
@@ -110,7 +112,7 @@ Key concepts:
 - **State files** - Subagents communicate through state files in `./output/state/`. The Joker writes `01-joker.md` containing the joke. The Code agent reads that file, then writes `02-code.md` and the HTML deliverable.
 - **Gates** - Between each step the orchestrator can pause for approval or auto-continue.
 
-> **Tip:**  - delete any existing content in ./output/state/ that is carried over from lab1
+> **Tip:** - delete any existing content in ./output/state/ that is carried over from lab1
 
 **screenshot**
 
@@ -351,7 +353,7 @@ Run the pipeline a few more times with different subjects:
    meetings that could have been emails
 ```
 
-> **Tip:** Good practice for each new run is to delete previous output files - but you will find they get overwritten if this isnt done. 
+> **Tip:** Good practice for each new run is to delete previous output files - but you will find they get overwritten if this isnt done.
 
 **screenshot**
 

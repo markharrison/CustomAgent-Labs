@@ -47,7 +47,7 @@ The starter repo already contains a `.github/instructions/custom-agent.instructi
    dir .github\instructions
 ```
 
-   You should see the file `custom-agent.instructions.md` in the listing.
+You should see the file `custom-agent.instructions.md` in the listing.
 
 **screenshot**
 
@@ -61,7 +61,7 @@ The starter repo already contains a `.github/instructions/custom-agent.instructi
    code .
 ```
 
-   This opens the current folder as a VS Code workspace.
+This opens the current folder as a VS Code workspace.
 
 2. In the **Explorer** panel (left sidebar), verify you can see the following structure:
 
@@ -207,6 +207,8 @@ Walk through the file and verify these key elements are present:
 | **State file rule**      | Inside DO / DON'T or Workflow          | Agent writes to `./output/state/00-poet-agent.md`.                |
 | **Validation Checklist** | `## Validation Checklist` heading      | Checklist for verifying the limerick output.                      |
 
+> **Important:** `tools` must be set to `["read", "edit"] ` - so that the agent can write files to disk.
+
 **screenshot**
 
 ---
@@ -215,13 +217,15 @@ Walk through the file and verify these key elements are present:
 
 Time to take your new agent for a spin!
 
+Open a new Chat session to start with a clean slate — this avoids irrelevant context from prior conversations affecting the new conversation.
+
 ### 6.1 - Open Copilot Chat
 
 1. Open **Copilot Chat**
 
 ### 6.2 - Invoke the Poet Agent
 
-1. Select **Poet Agent** from the dropdown (where it normally says Agent | Ask | Plan)
+1. Select **Poet Agent** from the agent selection dropdown (where it normally says Agent | Ask | Plan)
 
 **screenshot**
 
@@ -235,23 +239,7 @@ Time to take your new agent for a spin!
 
 **screenshot**
 
-### 6.3 - Try a few more subjects
-
-Try different subjects to see the agent in action:
-
-```
-Monday morning meetings
-```
-
-```
-debugging at 2am
-```
-
-```
-the joy of merge conflicts
-```
-
-### 6.4 - Verify the output files
+### 6.3 - Verify the output files
 
 If the agent is following the conventions correctly, it should have created a state file.
 
@@ -266,6 +254,12 @@ They are useful when you have complex agents or multi-agent orchestrations.
 
 **screenshot**
 
+### 6.4 - Try a few more poem subjects
+
+Try different poem subjects to see the agent in action:
+
+> **Tip:** Good practice for each new run is to delete previous output files - but you will find they get overwritten if this isnt done.
+
 ---
 
 ## Step 7 - Refine and Iterate
@@ -277,18 +271,26 @@ One of the great things about custom agents is that you can keep improving them.
 Open `poet.agent.md` and ask Copilot:
 
 ```
-Can you update the Poet Agent workflow so that in Phase 2 it
-generates three candidate limericks and picks the funniest one
-to present to the user?
+Update the Poet Agent workflow so that in Phase 2 it
+generates three candidate limericks and selects the funniest one.
+
+Humor signals:
+
+- Surprise / twist. Does the last line subvert expectations? The best limericks have an unexpected punchline.
+- Wordplay.	Puns, double meanings, or clever rhymes score higher than straightforward ones.
+- Absurdity.	Exaggeration and absurd imagery ("a cat filed taxes at dawn") are funnier than literal descriptions.
+- Rhythm & flow.	A limerick that scans naturally (da-DUM-da-da-DUM-da-da-DUM) reads funnier than one that stumbles.
+
+
 ```
 
 ### 7.2 - Add edge-case handling
 
 ```
 Update the Poet Agent DO / DON'T section to handle these edge cases:
-- If the user provides an empty or nonsensical subject, ask them to clarify
-- If the subject is a person's name, write the limerick about the name but
-  keep it respectful
+- If the users ask for something other than a limerick then explain you are a Poet agent who specialises on Limericks
+- If the user provides an empty or nonsensical subject then ask them to clarify
+- If the subject is a person's name, write the limerick about the name but keep it respectful
 ```
 
 ### 7.3 - Change the model
