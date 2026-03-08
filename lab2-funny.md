@@ -32,8 +32,6 @@ The user gives the Funny Agent a subject (e.g. "cats", "Kubernetes", "Monday mor
 
 To read more about Subagents in VSCode - check [https://code.visualstudio.com/docs/copilot/agents/subagents](https://code.visualstudio.com/docs/copilot/agents/subagents)
 
----
-
 ## Step 1 - Open the Starter Repository in VS Code
 
 You will use the same starter repository from Lab 1. If you no longer have it, re-clone it now (see Lab 1, Step 1).

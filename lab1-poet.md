@@ -49,9 +49,7 @@ The starter repo already contains a `.github/instructions/custom-agent.instructi
 
 You should see the file `custom-agent.instructions.md` in the listing.
 
-**screenshot**
-
----
+![screenshot](images/poet1.jpg)
 
 ## Step 2 - Open the Repository in VS Code
 
@@ -78,9 +76,7 @@ This opens the current folder as a VS Code workspace.
 3. Open the **Copilot Chat** panel:
    - Confirm that Copilot Chat is active and responds to messages.
 
-**screenshot**
-
----
+![screenshot](images/poet2.jpg)
 
 ## Step 3 - Read the Instruction File (Optional but Recommended)
 
@@ -95,9 +91,7 @@ Before asking Copilot to generate anything, take a minute to skim the instructio
 
 > You do _not_ need to memorise any of this. Copilot has already loaded the instruction file because it matches the `applyTo: "**/*.agent.md"` pattern. When you create a file ending in `.agent.md`, Copilot will automatically follow these rules.
 
-**screenshot**
-
----
+![screenshot](images/poet3.jpg)
 
 ## Step 4 - Use Copilot to Write the Requirements Document
 
@@ -108,25 +102,30 @@ A good practice before building any agent is to describe _what_ it should do in 
 1. Open the **Copilot Chat** panel
 2. Make sure you're in **Plan** mode - click the agent selector at the bottom of the chat panel and choose **Plan** if it is not already selected. We use Plan mode here because we are _planning_ what the agent should do, not asking Copilot to run tools or edit files.
 
-**screenshot**
+You can also chose the model to use. The screenshot shows Clause Opus 4.6 but experiment with alternatives.
+
+![screenshot](images/poet4.jpg)
 
 3. Type the following prompt into the chat:
 
    ```
    I want to build a GitHub Copilot custom agent called "Poet Agent".
-
    Its purpose:
-   - The user gives it a subject (e.g. "cats", "Monday meetings", "debugging at 2am").
+   - The user gives it a subject (e.g. "cats", "Monday meetings", "scary clowns").
    - The agent responds with a funny limerick about that subject.
-   - Save the poem to file ./output/poem.md
+   - Save the poem to file ./output/poem.md .
 
-   Please write a poet-requirements.md file for this agent. Include:
+   I want to a requirements markdown file for this agent .
+   Include:
    - A short description of the agent
    - The target user
    - Functional requirements (what it does)
    - Non-functional requirements (tone, length, format)
-   - Example input and output
+   - Example input and output.
+
    ```
+
+![screenshot](images/poet5.jpg)
 
 4. Copilot will generate a markdown document in the chat. **Review the output** - it should contain sections similar to:
 
@@ -138,13 +137,14 @@ A good practice before building any agent is to describe _what_ it should do in 
    | Non-functional Requirements | Humorous tone, clean language, exactly 5 lines.              |
    | Example                     | Input: "cats" → Output: a five-line limerick about cats.     |
 
-5. When you are happy with the result, click the **Open in Editor** button at the top of the generated code block. This opens the content in a new editor tab.
+![screenshot](images/poet6.jpg)
 
-6. Save the editor tab as **`poet-requirements.md`** at the root of the workspace:
-   - It may not default to the workspace root - so navigate to the correct directory
-   - Press **`Ctrl+S`** / **`Cmd+S`** → choose the repository root folder → overwrite the existing `poet-requirements.md` → **Save**.
+5. In Ask mode - the agent cannot write to the file. Two options depending on how the agent responds. Either:
 
-**screenshot**
+- copy the suggested requirements to the `poet-requirements.md` file and save it
+- if given the option 'Open in Editor' select that and then save to `poet-requirements.md`
+
+![screenshot](images/poet7.jpg)
 
 ### 4.2 - Review and refine
 
@@ -156,9 +156,7 @@ Add a constraint that the agent should never produce offensive or inappropriate 
 
 Save the file when you are satisfied.
 
-**screenshot**
-
----
+![screenshot](images/poet8.jpg)
 
 ## Step 5 - Use Copilot to Create the Agent Definition File
 
@@ -174,7 +172,9 @@ Custom agents live in `.github/agents/`.
 
 > **Important:** The file name **must** end in `.agent.md`. This is what tells VS Code (and Copilot) that it is a custom agent definition.
 
-**screenshot**
+Create a new Chat session to start with a clean slate — this avoids irrelevant context from prior conversations affecting the new conversation.
+
+![screenshot](images/poet9.jpg)
 
 ### 5.2 - Ask Copilot to scaffold the agent
 
@@ -183,16 +183,20 @@ Custom agents live in `.github/agents/`.
 3. Type the following prompt:
 
    ```
-   Using #file:poet-requirements.md, generate a "Poet Agent"
+   Using #file:poet-requirements.md generate a "Poet Agent"
    Model: Claude Sonnet 4.5.
    Use a 3-phase workflow: Understand → Compose → Present & Refine.
    ```
 
-4. Copilot will generate a complete `poet.agent.md` file.
+![screenshot](images/poet10.jpg)
+
+4. Copilot will generate a complete `poet.agent.md` file. It uses rge `custom-agents.instructions.md` file to help scaffold the agent.
+
+![screenshot](images/poet11.jpg)
 
 5. Select **[Keep]** and **Save** the file (`Ctrl+S` / `Cmd+S`).
 
-**screenshot**
+![screenshot](images/poet12.jpg)
 
 ### 5.3 - Review the generated agent
 
@@ -209,15 +213,13 @@ Walk through the file and verify these key elements are present:
 
 > **Important:** `tools` must be set to `["read", "edit"] ` - so that the agent can write files to disk.
 
-**screenshot**
-
----
+![screenshot](images/poet13.jpg)
 
 ## Step 6 - Test the Poet Agent
 
 Time to take your new agent for a spin!
 
-Open a new Chat session to start with a clean slate — this avoids irrelevant context from prior conversations affecting the new conversation.
+Create a new Chat session to start with a clean slate.
 
 ### 6.1 - Open Copilot Chat
 
@@ -227,7 +229,7 @@ Open a new Chat session to start with a clean slate — this avoids irrelevant c
 
 1. Select **Poet Agent** from the agent selection dropdown (where it normally says Agent | Ask | Plan)
 
-**screenshot**
+![screenshot](images/poet14.jpg)
 
 2. Type a subject:
 
@@ -242,6 +244,9 @@ Open a new Chat session to start with a clean slate — this avoids irrelevant c
 ### 6.3 - Verify the output files
 
 If the agent is following the conventions correctly, it should have created a state file.
+As the agent proceeds, the checkboxes in the Phases sections gets checked.
+
+![screenshot](images/poet15.jpg)
 
 Note - a state file is created because our instruction files mandate it. We could remove this requirement for simple agents.
 They are useful when you have complex agents or multi-agent orchestrations.
@@ -252,15 +257,13 @@ They are useful when you have complex agents or multi-agent orchestrations.
 
 4. In the `output` folder there should be the poem in the `poem.md` file.
 
-**screenshot**
+![screenshot](images/poet16.jpg)
 
 ### 6.4 - Try a few more poem subjects
 
 Try different poem subjects to see the agent in action:
 
 > **Tip:** Good practice for each new run is to delete previous output files - but you will find they get overwritten if this isnt done.
-
----
 
 ## Step 7 - Refine and Iterate
 
@@ -271,8 +274,7 @@ One of the great things about custom agents is that you can keep improving them.
 Open `poet.agent.md` and ask Copilot:
 
 ```
-Update the Poet Agent workflow so that in Phase 2 it
-generates three candidate limericks and selects the funniest one.
+Update the Poet Agent workflow so that in Phase 2 it generates three candidate limericks and selects the funniest one.
 
 Humor signals:
 
@@ -280,8 +282,6 @@ Humor signals:
 - Wordplay.	Puns, double meanings, or clever rhymes score higher than straightforward ones.
 - Absurdity.	Exaggeration and absurd imagery ("a cat filed taxes at dawn") are funnier than literal descriptions.
 - Rhythm & flow.	A limerick that scans naturally (da-DUM-da-da-DUM-da-da-DUM) reads funnier than one that stumbles.
-
-
 ```
 
 ### 7.2 - Add edge-case handling
