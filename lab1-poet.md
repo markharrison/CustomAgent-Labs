@@ -227,7 +227,7 @@ Create a new Chat session to start with a clean slate.
 
 ### 6.2 - Invoke the Poet Agent
 
-1. Select **Poet Agent** from the agent selection dropdown (where it normally says Agent | Ask | Plan)
+1. Select **Poet** from the agent selection dropdown (where it normally says Agent | Ask | Plan)
 
 ![screenshot](images/poet14.jpg)
 

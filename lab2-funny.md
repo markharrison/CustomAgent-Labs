@@ -64,7 +64,7 @@ You will use the same starter repository from Lab 1. If you no longer have it, r
 
 4. Open **Copilot Chat** and confirm it is active.
 
-**screenshot**
+![screenshot](images/funny1.jpg)
 
 ---
 
@@ -112,8 +112,6 @@ Key concepts:
 
 > **Tip:** - delete any existing content in ./output/state/ that is carried over from lab1
 
-**screenshot**
-
 ---
 
 ## Step 3 - Use Copilot to Write the Requirements Document
@@ -123,15 +121,14 @@ Just like in Lab 1, you will start by writing a requirements document. This time
 ### 3.1 - Ask Copilot to draft the requirements
 
 1. Open **Copilot Chat**.
-2. Set the mode to **Plan** - click the mode selector at the top of the chat panel and choose **Plan**.
+2. Set the mode to **Plan** - click the mode selector at the bottom of the chat panel and choose **Plan**.
 
-**screenshot**
+![screenshot](images/funny2.jpg)
 
 3. Type the following prompt:
 
    ```
    I want to build a multi-agent GitHub Copilot custom agent system called "Funny Agent".
-
    Architecture:
    - An Orchestrator called "Funny Agent" that coordinates a 2-step pipeline.
    - Subagent 1: "Joker Agent" - receives a subject from the user and writes
@@ -148,12 +145,14 @@ Just like in Lab 1, you will start by writing a requirements document. This time
       ./output/joke.html
    4. Funny Agent presents the result to the user.
 
-   Please write the requirements. Include:
+   I want to a requirements markdown file for these agents .
+   Include:
    - A short description of the system
    - Architecture overview (orchestrator + 2 subagents)
    - Functional requirements for each agent
    - Non-functional requirements (tone, format, constraints)
-   - Example input and expected outputs
+   - Example input and expected outputs.
+
    ```
 
 4. Review the generated requirements. You should see sections covering:
@@ -167,13 +166,20 @@ Just like in Lab 1, you will start by writing a requirements document. This time
    | Non-functional Requirements     | Humorous tone, family-friendly, responsive HTML, no external dependencies. |
    | Example                         | Input: "cats" → Joke text → HTML page showing the joke.                    |
 
-5. Click **Open in Editor**, then save the file as **`funny-requirements.md`** at the repository root (`Ctrl+S` / `Cmd+S`).
+5. In Ask mode - the agent cannot write to the file. You have two options depending on how the agent responds. Either:
 
-**screenshot**
+- copy the suggested requirements to the `funny-requirements.md` file and save it
+- if given the option 'Open in Editor' select that and then save to `funny-requirements.md`
+
+![screenshot](images/funny3.jpg)
 
 ### 3.2 - Review and refine
 
-Read through the requirements. Suggested refinements you can ask Copilot:
+Read through the requirements.
+
+![screenshot](images/funny4.jpg)
+
+Suggested refinements you can ask Copilot:
 
 ```
 Add a constraint that the HTML page must be fully self-contained - no external
@@ -184,22 +190,23 @@ CSS frameworks, no JavaScript dependencies, just inline CSS and HTML.
 Add a constraint that jokes must be family-friendly and workplace-appropriate.
 ```
 
-Save the file when you are satisfied.
+![screenshot](images/funny5.jpg)
 
-**screenshot**
+Save the file when you are satisfied.
 
 ---
 
-## Step 4 - Use Copilot to Create the Agents
+## Step 4 - Use Copilot to Create the Agent Definition Files
 
 Now you will ask Copilot to create all three agents - the orchestrator and both subagents - based on the requirements document. The `custom-agent.instructions.md` file will guide Copilot to produce well-structured agent definitions that follow all the conventions automatically.
 
 ### 4.1 - Ask Copilot to scaffold the agents
 
 1. Open **Copilot Chat**.
+
 2. Make sure you are in **Agent** mode (not Ask or Plan) - Copilot needs to be able to create files.
 
-**screenshot**
+Create a new Chat session to start with a clean slate — this avoids irrelevant context from prior conversations affecting the new conversation.
 
 3. Type the following prompt:
 
@@ -208,6 +215,8 @@ Now you will ask Copilot to create all three agents - the orchestrator and both 
    create all the agents for the Funny Agent pipeline —
    the orchestrator and both subagents.
 ```
+
+![screenshot](images/funny6.jpg)
 
 4. Copilot will create the three files. Review each one as it appears - accept the changes and save.
 
@@ -243,7 +252,7 @@ Walk through each file and spot-check these key elements:
 
 > **Tip:** If anything is missing or looks off, just tell Copilot what to fix in the chat
 
-**screenshot**
+![screenshot](images/funny7.jpg)
 
 ---
 
@@ -267,13 +276,19 @@ Before testing, confirm all files are in place.
 
 2. Make sure all three new files are saved.
 
-**screenshot**
+![screenshot](images/funny8.jpg)
+
+![screenshot](images/funny9.jpg)
+
+![screenshot](images/funny10.jpg)
 
 ---
 
 ## Step 6 - Test the Funny Agent Pipeline
 
 Time to run the full pipeline!
+
+Create a new Chat session to start with a clean slate.
 
 ### 6.1 - Open Copilot Chat
 
@@ -283,17 +298,21 @@ Time to run the full pipeline!
 
 1. Select **Funny Agent** from the agent dropdown (where it normally says Agent | Ask | Plan).
 
-**screenshot**
+![screenshot](images/funny11.jpg)
 
 2. Type a subject:
 
 ```
-   cats who judge you silently
+   ![alt text](image.png)
 ```
 
 3. Press Enter and watch the orchestrator work through the pipeline.
 
-**screenshot**
+![screenshot](images/funny12.jpg)
+
+![screenshot](images/funny13.jpg)
+
+![screenshot](images/funny14.jpg)
 
 ### 6.3 - Observe the pipeline execution
 
@@ -305,8 +324,6 @@ As the Funny Agent runs, you should see it:
 4. **Present the result** - the Funny Agent shows you the joke and points you to the HTML file
 
 > **Tip:** Keep the Explorer panel open so you can watch the `output/` folder populate in real time as each subagent does its work.
-
-**screenshot**
 
 ### 6.4 - Check the output files
 
@@ -322,10 +339,16 @@ As the Funny Agent runs, you should see it:
 ```
 
 2. Open `01-joker.md` - confirm it contains the joke text under a `## Joke` heading.
+
+![screenshot](images/funny16.jpg)
+
 3. Open `02-code.md` - confirm it shows all phases checked off.
+
+![screenshot](images/funny17.jpg)
+
 4. Open `00-funny-agent.md` - confirm both pipeline steps are marked complete.
 
-![catjoke](images/catjoke.jpg)
+![screenshot](images/funny18.jpg)
 
 ### 6.5 - View the HTML page
 
@@ -333,7 +356,9 @@ As the Funny Agent runs, you should see it:
 2. Select **Open with Live Server** (if you have the Live Server extension) or **Reveal in File Explorer** and open the file in your browser.
 3. You should see a nicely styled web page displaying the joke!
 
-**screenshot**
+![screenshot](images/funny15.jpg)
+
+![catjoke](images/catjoke.jpg)
 
 ### 6.6 - Try more subjects
 
@@ -352,8 +377,6 @@ Run the pipeline a few more times with different subjects:
 ```
 
 > **Tip:** Good practice for each new run is to delete previous output files - but you will find they get overwritten if this isnt done.
-
-**screenshot**
 
 ---
 
