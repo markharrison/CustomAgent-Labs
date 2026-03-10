@@ -129,22 +129,6 @@ The Quiz Agent generates the same quiz content regardless of format. The skill i
    ├── README.md
    └── ...
 
-
-   CustomAgent-Labs/
-   ├── .github/
-   │   ├── agents/
-   │   │   ├── _subagents/
-   │   │   │   └── ...
-   │   │   └── ...
-   │   ├── instructions/
-   │   │   └── custom-agent.instructions.md
-   │   └── skills/
-   │       ├── pptx/
-   │       │   └── ...
-   │       └── frontend-slides/
-   │           └── ...
-   ├── README.md
-   └── ...
 ```
 
 2. Take a minute to browse the skill files. Each skill folder contains:
