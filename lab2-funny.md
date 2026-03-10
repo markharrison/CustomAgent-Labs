@@ -57,7 +57,6 @@ You will use the same starter repository from Lab 1. If you no longer have it, r
    │   │   └── poet.agent.md          ← from Lab 1
    │   └── instructions/
    │       └── custom-agent.instructions.md
-   ├── poet-requirements.md
    ├── README.md
    └── ...
 ```
