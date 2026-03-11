@@ -99,15 +99,15 @@ The Quiz Agent generates the same quiz content regardless of format. The skill i
 
 ```
 
-3. Move the installed skills into the `.github/skills` folder (our project convention).  For PowerShell: 
+![screenshot](images/quiz1.jpg)
+
+3. Move the installed skills into the `.github/skills` folder (our project convention). For PowerShell:
 
 ```powershell
-   robocopy .\.agents\skills .\.github\skills /E /MOVE /NFL /NDL 
+   robocopy .\.agents\skills .\.github\skills /E /MOVE /NFL /NDL
    Remove-Item -Recurse -Force .\.agents
 
 ```
-
-**screenshot**
 
 ### 2.2 - Verify the skills are installed
 
@@ -132,6 +132,8 @@ The Quiz Agent generates the same quiz content regardless of format. The skill i
 
 ```
 
+![screenshot](images/quiz2.jpg)
+
 2. Take a minute to browse the skill files. Each skill folder contains:
    - A **`SKILL.md`** file — the main instructions that tell the agent what to do and how to do it.
    - **Supporting documents** — additional markdown guides with detailed techniques (e.g. `pptxgenjs.md` for PowerPoint creation from scratch, `STYLE_PRESETS.md` for HTML slide themes).
@@ -140,7 +142,7 @@ The Quiz Agent generates the same quiz content regardless of format. The skill i
 
    The agent reads these files at runtime and follows the instructions to produce high-quality output — without these files, it would be guessing at file formats and best practices.
 
-**screenshot**
+![screenshot](images/quiz3.jpg)
 
 ---
 
@@ -153,7 +155,7 @@ Just like in the previous labs, you will start by describing _what_ the agent sh
 1. Open **Copilot Chat**.
 2. Set the mode to **Plan** — click the mode selector at the bottom of the chat panel and choose **Plan**.
 
-**screenshot**
+![screenshot](images/quiz4.jpg)
 
 3. Type the following prompt into the chat:
 
@@ -189,7 +191,7 @@ Just like in the previous labs, you will start by describing _what_ the agent sh
 
    ```
 
-**screenshot**
+![screenshot](images/quiz5.jpg)
 
 4. Copilot will generate a markdown document in the chat. **Review the output** — it should contain sections similar to:
 
@@ -202,31 +204,20 @@ Just like in the previous labs, you will start by describing _what_ the agent sh
    | Output Format Options       | PowerPoint (.pptx) via pptx skill or HTML slides via frontend-slides skill.  |
    | Example                     | Input: "General Knowledge" → 5 questions with answers → 11 slides.           |
 
-**screenshot**
+![screenshot](images/quiz6.jpg)
 
 5. In Plan mode — the agent cannot write to the file. You have two options depending on how the agent responds. Either:
 
 - copy the suggested requirements to the `quiz-requirements.md` file and save it
 - if given the option 'Open in Editor' select that and then save to `quiz-requirements.md`
 
-**screenshot**
+![screenshot](images/quiz7.jpg)
 
 ### 3.2 - Review and refine
 
-Read through the requirements. Feel free to edit them by hand or ask Copilot follow-up questions such as:
-
-```
-Add a constraint that the funny wrong answer should be obviously humorous
-but not offensive or inappropriate.
-```
-
-```
-Add a constraint that the correct answer must be factually accurate.
-```
+Read through the requirements. Feel free to edit them by hand or ask Copilot follow-up questions.
 
 Save the file when you are satisfied.
-
-**screenshot**
 
 ---
 
@@ -246,8 +237,6 @@ Custom agents live in `.github/agents/`.
 
 Create a new Chat session to start with a clean slate — this avoids irrelevant context from prior conversations affecting the new conversation.
 
-**screenshot**
-
 ### 4.2 - Ask Copilot to scaffold the agent
 
 1. Make sure the file `quiz.agent.md` is **open and active** in the editor (click on its tab).
@@ -255,16 +244,16 @@ Create a new Chat session to start with a clean slate — this avoids irrelevant
 3. Type the following prompt:
 
    ```
-    Using #file:quiz-requirements.md and #file:custom-agent.instructions.md,
+    Using #file:quiz-requirements.md and #file:custom-agent.instructions.md
     generate a "Quiz Agent" using Claude Sonnet 4.5.
 
    ```
 
-**screenshot**
+![screenshot](images/quiz8.jpg)
 
 4. Copilot will generate a complete `quiz.agent.md` file. It uses the `custom-agents.instructions.md` file to help scaffold the agent.
 
-**screenshot**
+![screenshot](images/quiz9.jpg)
 
 5. Select **[Keep]** and **Save** the file (`Ctrl+S` / `Cmd+S`).
 
@@ -286,7 +275,7 @@ Walk through the file and spot-check these key elements:
 
 > **Tip:** If anything is missing or looks off, just tell Copilot what to fix in the chat.
 
-**screenshot**
+![screenshot](images/quiz10.jpg)
 
 ---
 
@@ -300,10 +289,7 @@ Before testing, confirm all files are in place.
    .github/
    ├── agents/
    │   ├── _subagents/
-   │   │   ├── joker.agent.md       ← from Lab 2
-   │   │   └── code.agent.md        ← from Lab 2
-   │   ├── poet.agent.md            ← from Lab 1
-   │   ├── funny.agent.md           ← from Lab 2
+   │   │   └── ...
    │   └── quiz.agent.md            ← NEW - your Quiz Agent
    ├── instructions/
    │   └── custom-agent.instructions.md
@@ -313,8 +299,6 @@ Before testing, confirm all files are in place.
 ```
 
 2. Make sure the quiz agent file is saved.
-
-**screenshot**
 
 ---
 
@@ -332,23 +316,29 @@ Create a new Chat session to start with a clean slate.
 
 1. Select **Quiz Agent** from the agent dropdown (where it normally says Agent | Ask | Plan).
 
-**screenshot**
+![screenshot](images/quiz11.jpg)
 
 2. Type a subject:
 
 ```
-   General Knowledge
+   I want a "General Knowledge" quiz
 ```
 
 3. Press Enter and watch the agent work.
 
-**screenshot**
+> **Tip:** Keep the Explorer panel open so you can watch the `output/` folder populate in real time.
 
 ### 6.3 - Respond to the format prompt
 
-The Quiz Agent should ask you which output format you prefer — **PowerPoint** or **HTML slides**. Select your preferred option.
+The Quiz Agent should ask you which output format you prefer — **PowerPoint** or **HTML slides**. Select / enter your preferred option.
 
-**screenshot**
+In this run - i have selected PowerPoint.
+
+![screenshot](images/quiz12.jpg)
+
+You may get prompted to approve command - if happy to proceed then allow
+
+![screenshot](images/quiz13.jpg)
 
 ### 6.4 - Observe the agent execution
 
@@ -359,8 +349,6 @@ As the Quiz Agent runs, you should see it:
 3. **Ask for output format** — prompts you to choose PowerPoint or HTML
 4. **Create the slides** — produces 11 slides (title slide + question/answer pairs) in your chosen format
 5. **Present the result** — shows you a summary and points you to the output file
-
-> **Tip:** Keep the Explorer panel open so you can watch the `output/` folder populate in real time.
 
 **screenshot**
 
@@ -377,7 +365,7 @@ As the Quiz Agent runs, you should see it:
 
 2. Open the state file — confirm it shows all phases checked off.
 
-**screenshot**
+![screenshot](images/quiz14.jpg)
 
 ### 6.6 - View the slides
 
@@ -386,13 +374,15 @@ As the Quiz Agent runs, you should see it:
 1. Open `output/quiz.pptx` in PowerPoint or a compatible viewer.
 2. You should see 11 slides — a title slide followed by alternating question and answer slides.
 
+![screenshot](images/quiz15.jpg)
+
 **If you chose HTML slides:**
 
 1. Right-click on `output/quiz.html` in the Explorer panel.
 2. Select **Open with Live Server** (if you have the Live Server extension) or **Reveal in File Explorer** and open the file in your browser.
 3. You should see a slide deck with 11 slides that you can navigate through.
 
-**screenshot**
+![screenshot](images/quiz16.jpg)
 
 ### 6.7 - Test with a nonsensical subject
 
@@ -403,8 +393,6 @@ Try giving the agent a nonsensical subject to verify it handles it gracefully:
 ```
 
 The agent should politely decline and ask for a sensible topic.
-
-**screenshot**
 
 ### 6.8 - Try more subjects
 
