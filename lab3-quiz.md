@@ -380,7 +380,7 @@ As the Quiz Agent runs, you should see it:
 
 1. Right-click on `output/quiz.html` in the Explorer panel.
 2. Select **Open with Live Server** (if you have the Live Server extension) or **Reveal in File Explorer** and open the file in your browser.
-3. You should see a slide deck with 11 slides that you can navigate through.
+3. You should see a web page with 11 slides that you can navigate through.
 
 ![screenshot](images/quiz16.jpg)
 
