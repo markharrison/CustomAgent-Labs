@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this lab you will create a **GitHub Copilot Custom Agent** called the **Shopper Agent** that compares prices for grocery items across multiple online stores. This lab introduces a powerful new concept: **Model Context Protocol (MCP) servers** — external tools that dramatically extend what your custom agents can do.
+In this lab you will create a **GitHub Copilot Custom Agent** called the **Shopper Agent** that compares prices for grocery items across multiple online stores. This lab introduces a powerful new concept: **Model Context Protocol (MCP) servers** - external tools that dramatically extend what your custom agents can do.
 
 The Shopper Agent will use the **Playwright MCP server** to visit real grocery websites, search for products, extract pricing information, and generate a comprehensive comparison report.
 
@@ -23,7 +23,7 @@ The Shopper Agent will use the **Playwright MCP server** to visit real grocery w
 | **GitHub Copilot**            | Active subscription.                                                       |
 | **VS Code**                   | Always use the latest.                                                     |
 | **Node.js**                   | Required for installing MCP servers. Version 18+ recommended.              |
-| **npx**                       | Comes with Node.js — used to run MCP servers.                              |
+| **npx**                       | Comes with Node.js - used to run MCP servers.                              |
 
 ---
 
@@ -74,7 +74,7 @@ Key benefits:
 
 You will use the same repository from Labs 1, 2, and 3. If you no longer have it, re-clone it now (see Lab 1, Step 1).
 
-1. Open a **terminal** and navigate to the `CustomAgent-Labs` folder — for example:
+1. Open a **terminal** and navigate to the `CustomAgent-Labs` folder - for example:
 
 ```powershell
    cd c:\dev\CustomAgent-Labs
@@ -107,6 +107,12 @@ You will use the same repository from Labs 1, 2, and 3. If you no longer have it
 
 ## Step 2 - Install and Configure the Playwright MCP Server
 
+**Playwright** is an open-source framework from Microsoft, widely used for **functional testing of web applications**. Developers write automated tests that launch a real browser, navigate to pages, fill in forms, click buttons, and assert that the application behaves correctly - all without a human touching the keyboard. It supports Chromium, Firefox, and WebKit, and is a standard part of many CI/CD pipelines.
+
+In this lab, we repurpose that same browser-automation power for a completely different goal: **live web scraping by an AI agent**. Instead of a test script driving the browser, the Shopper Agent calls the Playwright MCP server to navigate to grocery websites, search for products, and extract pricing data. The underlying capability - programmatic control of a real browser - is identical; only the intent changes from "test my app" to "read someone else's website."
+
+### Why this matters
+
 Before your agent can use Playwright, you need to install the Playwright MCP server and configure VS Code to run it.
 
 ### 2.1 - Understand MCP server configuration
@@ -120,7 +126,7 @@ MCP servers are configured per-project using a `.vscode/mcp.json` file in the wo
 ### 2.2 - Verify the MCP configuration file
 
 1. In the Explorer panel, expand the `.vscode` folder.
-2. Open the **`mcp.json`** file — it is already included in the lab repository.
+2. Open the **`mcp.json`** file - it is already included in the lab repository.
 3. Look for the `playwright` entry in the `"servers"` section:
 
 ```json
@@ -131,7 +137,7 @@ MCP servers are configured per-project using a `.vscode/mcp.json` file in the wo
     },
 ```
 
-This tells VS Code that a Playwright MCP server is available for this workspace. The `@playwright/mcp@latest` package is the official Playwright MCP server — it exposes browser automation tools that your custom agents can use.
+This tells VS Code that a Playwright MCP server is available for this workspace. The `@playwright/mcp@latest` package is the official Playwright MCP server - it exposes browser automation tools that your custom agents can use.
 
 **_TODO Screenshot_**
 
@@ -139,16 +145,16 @@ This tells VS Code that a Playwright MCP server is available for this workspace.
 
 You do **not** need to restart VS Code. There are two ways to start the server:
 
-#### Option A — Start from mcp.json (quickest)
+#### Option A - Start from mcp.json (quickest)
 
 1. Open the `.vscode/mcp.json` file in the editor.
 2. You will see a **`▷ Start`** link displayed inline above the `"playwright"` server entry. VS Code renders these action links directly in the JSON file.
-3. Click **`Start`** — the server will launch in the background.
-4. Once running, the link changes to **`Stop`** — confirming the server is active. You will also see a tool count (e.g., `22 tools`) indicating the available Playwright tools.
+3. Click **`Start`** - the server will launch in the background.
+4. Once running, the link changes to **`Stop`** - confirming the server is active. You will also see a tool count (e.g., `22 tools`) indicating the available Playwright tools.
 
 **_TODO Screenshot_**
 
-#### Option B — Start from the MCP Servers panel
+#### Option B - Start from the MCP Servers panel
 
 1. Open the **Extensions** sidebar (`Ctrl+Shift+X`).
 2. At the bottom of the sidebar, look for the **MCP Servers** section. You should see **playwright** listed.
@@ -162,12 +168,12 @@ You do **not** need to restart VS Code. There are two ways to start the server:
 ### 2.4 - Verify the MCP server is running
 
 1. Confirm the server is running using either method:
-   - In `mcp.json` — you should see **`Stop | 22 tools | More...`** next to the playwright entry.
-   - In the MCP Servers panel — the playwright entry should show a running status.
+   - In `mcp.json` - you should see **`Stop | 22 tools | More...`** next to the playwright entry.
+   - In the MCP Servers panel - the playwright entry should show a running status.
 
-2. You can also click the **Tools** button (the wrench/spanner icon at the bottom of the Copilot Chat panel, next to the model selector) to see all available tools — the Playwright MCP tools should be listed there.
+2. You can also click the **Tools** button (the wrench/spanner icon at the bottom of the Copilot Chat panel, next to the model selector) to see all available tools - the Playwright MCP tools should be listed there.
 
-> **Understanding the Tools selector:** The Tools button is not just for viewing — it lets you **enable or disable individual tools** for a conversation. This is important because Copilot has a **limit of 128 tools** that can be active at once. Every active tool adds to the context sent to the model, consuming tokens and potentially diluting the model's focus. If you have multiple MCP servers running (e.g., Playwright, a database server, an API server), the total tool count can climb quickly. Use the Tools selector to **uncheck tools you don't need** for the current task — this keeps the context lean and helps the agent perform better. For this lab, make sure the `playwright` tools are enabled and consider disabling any unrelated tools.
+> **Understanding the Tools selector:** The Tools button is not just for viewing - it lets you **enable or disable individual tools** for a conversation. This is important because Copilot has a **limit of 128 tools** that can be active at once. Every active tool adds to the context sent to the model, consuming tokens and potentially diluting the model's focus. If you have multiple MCP servers running (e.g., Playwright, a database server, an API server), the total tool count can climb quickly. Use the Tools selector to **uncheck tools you don't need** for the current task - this keeps the context lean and helps the agent perform better. For this lab, make sure the `playwright` tools are enabled and consider disabling any unrelated tools.
 
 **_TODO Screenshot_**
 
@@ -186,7 +192,7 @@ Just like in the previous labs, you will start by describing what the agent shou
 ### 3.1 - Ask Copilot to draft the requirements
 
 1. Open **Copilot Chat**.
-2. Set the mode to **Plan** — click the mode selector at the bottom of the chat panel and choose **Plan**.
+2. Set the mode to **Plan** - click the mode selector at the bottom of the chat panel and choose **Plan**.
 
 **_TODO Screenshot_**
 
@@ -227,7 +233,7 @@ Just like in the previous labs, you will start by describing what the agent shou
 
 **_TODO Screenshot_**
 
-4. Copilot will generate a markdown document in the chat. **Review the output** — it should contain sections similar to:
+4. Copilot will generate a markdown document in the chat. **Review the output** - it should contain sections similar to:
 
    | Section                     | What to look for                                                                        |
    | --------------------------- | --------------------------------------------------------------------------------------- |
@@ -240,7 +246,7 @@ Just like in the previous labs, you will start by describing what the agent shou
 
 **_TODO Screenshot_**
 
-5. In Plan mode — the agent cannot write to the file. You have two options depending on how the agent responds. Either:
+5. In Plan mode - the agent cannot write to the file. You have two options depending on how the agent responds. Either:
    - Copy the suggested requirements to the `shopper-requirements.md` file and save it
    - If given the option 'Open in Editor' select that and then save to `shopper-requirements.md`
 
@@ -268,12 +274,12 @@ Custom agents live in `.github/agents/`.
 
 > **Important:** The file name **must** end in `.agent.md`. This is what tells VS Code (and Copilot) that it is a custom agent definition.
 
-Create a new Chat session to start with a clean slate — this avoids irrelevant context from prior conversations affecting the new conversation.
+Create a new Chat session to start with a clean slate - this avoids irrelevant context from prior conversations affecting the new conversation.
 
 ### 4.2 - Ask Copilot to scaffold the agent
 
 1. Make sure the file `shopper.agent.md` is **open and active** in the editor (click on its tab).
-2. Open **Copilot Chat** and make sure you are in **Agent** mode (not Ask or Plan) — Copilot needs to be able to create files.
+2. Open **Copilot Chat** and make sure you are in **Agent** mode (not Ask or Plan) - Copilot needs to be able to create files.
 3. Type the following prompt:
 
    ```
@@ -294,7 +300,7 @@ Create a new Chat session to start with a clean slate — this avoids irrelevant
 
 Walk through the file and spot-check these key elements:
 
-**Shopper Agent** (`.github/agents/shopper.agent.md`) — Agent:
+**Shopper Agent** (`.github/agents/shopper.agent.md`) - Agent:
 
 | Element              | What to check                                                                                |
 | -------------------- | -------------------------------------------------------------------------------------------- |
@@ -306,7 +312,7 @@ Walk through the file and spot-check these key elements:
 | **Output File**      | Report saved to `./output/{item}-comparison-{timestamp}.md`                                  |
 | **State File**       | Writes progress to `./output/state/00-shopper-agent.md`                                      |
 
-> **Tip:** If anything is missing or looks off, just tell Copilot what to fix in the chat. The most critical element is that the `playwright/*` tools are declared in the frontmatter — without them, the agent won't be able to control browsers.
+> **Tip:** If anything is missing or looks off, just tell Copilot what to fix in the chat. The most critical element is that the `playwright/*` tools are declared in the frontmatter - without them, the agent won't be able to control browsers.
 
 **_TODO Screenshot_**
 
@@ -360,21 +366,21 @@ Create a new Chat session to start with a clean slate.
 
 **_TODO Screenshot_**
 
-> **Tip:** Keep the Explorer panel open so you can watch the `output/` folder populate in real time. This search may take 2-5 minutes depending on website response times — the agent is visiting 5 live websites!
+> **Tip:** Keep the Explorer panel open so you can watch the `output/` folder populate in real time. This search may take 2-5 minutes depending on website response times - the agent is visiting 5 live websites!
 
 ### 6.3 - Observe the agent execution
 
 As the Shopper Agent runs, you should see it:
 
-1. **Validate the item** — confirms "Wonky Carrots" is a sensible grocery item
-2. **Search each store** — uses Playwright MCP to navigate to each website, search for the product, and extract pricing
-3. **Handle missing products** — some stores may not stock Wonky Carrots; the agent marks them as "Not available"
-4. **Generate the report** — creates a markdown file with all findings
-5. **Present results** — shows you a summary and points you to the report file
+1. **Validate the item** - confirms "Wonky Carrots" is a sensible grocery item
+2. **Search each store** - uses Playwright MCP to navigate to each website, search for the product, and extract pricing
+3. **Handle missing products** - some stores may not stock Wonky Carrots; the agent marks them as "Not available"
+4. **Generate the report** - creates a markdown file with all findings
+5. **Present results** - shows you a summary and points you to the report file
 
 **_TODO Screenshot_**
 
-> **What's happening behind the scenes:** The agent is calling `mcp_playwright_navigate` to visit each store's website, `mcp_playwright_evaluate` to run JavaScript that extracts product data from the page, and optionally `mcp_playwright_screenshot` to capture evidence. All of this happens through the MCP protocol — the agent never directly controls the browser; it asks the Playwright MCP server to do it.
+> **What's happening behind the scenes:** The agent is calling `mcp_playwright_navigate` to visit each store's website, `mcp_playwright_evaluate` to run JavaScript that extracts product data from the page, and optionally `mcp_playwright_screenshot` to capture evidence. All of this happens through the MCP protocol - the agent never directly controls the browser; it asks the Playwright MCP server to do it.
 
 ### 6.4 - Check the output files
 
@@ -387,13 +393,13 @@ As the Shopper Agent runs, you should see it:
    └── wonky-carrots-comparison-YYYY-MM-DD-HHMMSS.md  ← The deliverable!
    ```
 
-2. Open the state file — confirm it shows all phases checked off.
+2. Open the state file - confirm it shows all phases checked off.
 
 **_TODO Screenshot_**
 
 ### 6.5 - View the comparison report
 
-3. Open the comparison report — it should contain:
+3. Open the comparison report - it should contain:
    - A timestamp and the search term
    - A table or structured list with results from each store
    - Price information (£ per item, £ per kg)
@@ -446,22 +452,22 @@ Congratulations! 🎉 You have completed Lab 4. Here is what you built:
 | Artifact                                  | Location           | Purpose                                                           |
 | ----------------------------------------- | ------------------ | ----------------------------------------------------------------- |
 | `shopper-requirements.md`                 | Repository root    | Describes the Shopper Agent's requirements and behavior.          |
-| `shopper.agent.md`                        | `.github/agents/`  | The Shopper Agent — compares grocery prices using Playwright MCP. |
+| `shopper.agent.md`                        | `.github/agents/`  | The Shopper Agent - compares grocery prices using Playwright MCP. |
 | Playwright MCP server configuration       | `.vscode/mcp.json` | Tells VS Code to run the Playwright MCP server.                   |
 | `output/state/00-shopper-agent.md`        | Created at runtime | State file written by the agent for progress tracking.            |
-| `output/{item}-comparison-{timestamp}.md` | Created at runtime | The deliverable — your price comparison report!                   |
+| `output/{item}-comparison-{timestamp}.md` | Created at runtime | The deliverable - your price comparison report!                   |
 
 ### Key takeaways
 
-1. **MCP extends agents with real-world capabilities.** By connecting to the Playwright MCP server, your agent can control web browsers, scrape websites, and extract data — all through a standardized protocol.
+1. **MCP extends agents with real-world capabilities.** By connecting to the Playwright MCP server, your agent can control web browsers, scrape websites, and extract data - all through a standardized protocol.
 
 2. **MCP tools are declared in frontmatter.** The agent specifies which `mcp_*` tools it needs in its `tools` array, and VS Code ensures the corresponding MCP servers are running and accessible.
 
 3. **Agents orchestrate, MCP servers execute.** The agent plans the workflow ("search Tesco, then Ocado, then ..."), but the Playwright MCP server does the actual browser automation. This separation keeps agents simple and MCP servers reusable.
 
-4. **MCP is composable.** You could add a **Database MCP server** to store historical prices, a **Notification MCP server** to alert you when prices drop, or a **Chart MCP server** to visualize trends — all without changing the Shopper Agent's core logic.
+4. **MCP is composable.** You could add a **Database MCP server** to store historical prices, a **Notification MCP server** to alert you when prices drop, or a **Chart MCP server** to visualize trends - all without changing the Shopper Agent's core logic.
 
-5. **Structured output makes data actionable.** The markdown report format is human-readable but also machine-parseable — you could build another agent that reads these reports and generates shopping lists or budget recommendations.
+5. **Structured output makes data actionable.** The markdown report format is human-readable but also machine-parseable - you could build another agent that reads these reports and generates shopping lists or budget recommendations.
 
 ---
 
