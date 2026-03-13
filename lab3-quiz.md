@@ -65,8 +65,6 @@ You will use the same repository from Labs 1 and 2. If you no longer have it, re
 
 4. Open **Copilot Chat** and confirm it is active.
 
-**screenshot**
-
 ---
 
 ## Step 2 - Install the Skills
