@@ -37,13 +37,13 @@ The starter repo already contains a `.github/instructions/custom-agent.instructi
 3. Clone the repository:
 
 ```powershell
-   git clone https://github.com/markharrison/CustomAgent-Labs.git
+   git clone https://github.com/markharrison/IAG-CustomAgent-Labs.git
 ```
 
 4. Confirm the clone succeeded:
 
 ```powershell
-   cd CustomAgent-Labs
+   cd IAG-CustomAgent-Labs
    dir .github\instructions
 ```
 
@@ -53,7 +53,7 @@ You should see the file `custom-agent.instructions.md` in the listing.
 
 ## Step 2 - Open the Repository in VS Code
 
-1. While still in your terminal inside the `CustomAgent-Labs` folder, run:
+1. While still in your terminal inside the `IAG-CustomAgent-Labs` folder, run:
 
 ```powershell
    code .
@@ -64,7 +64,7 @@ This opens the current folder as a VS Code workspace.
 2. In the **Explorer** panel (left sidebar), confirm the folder structure includes:
 
 ```
-   CustomAgent-Lab/
+   IAG-CustomAgent-Lab/
    ├── .github/
    │   ├── agents/          ← (empty - you will add your agent here)
    │   └── instructions/

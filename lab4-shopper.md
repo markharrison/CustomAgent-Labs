@@ -74,10 +74,10 @@ Key benefits:
 
 You will use the same repository from Labs 1, 2, and 3. If you no longer have it, re-clone it now (see Lab 1, Step 1).
 
-1. Open a **terminal** and navigate to the `CustomAgent-Labs` folder - for example:
+1. Open a **terminal** and navigate to the `IAG-CustomAgent-Labs` folder - for example:
 
 ```powershell
-   cd c:\dev\CustomAgent-Labs
+   cd c:\dev\IAG-CustomAgent-Labs
 ```
 
 2. Open the folder in VS Code:
@@ -89,7 +89,7 @@ You will use the same repository from Labs 1, 2, and 3. If you no longer have it
 3. In the **Explorer** panel, confirm the folder structure includes:
 
 ```
-   CustomAgent-Labs/
+   IAG-CustomAgent-Labs/
    ├── .github/
    │   ├── agents/
    │   └── instructions/

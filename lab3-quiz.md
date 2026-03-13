@@ -35,10 +35,10 @@ This lab introduces two new concepts:
 
 You will use the same repository from Labs 1 and 2. If you no longer have it, re-clone it now (see Lab 1, Step 1).
 
-1. Open a **terminal** and navigate to the `CustomAgent-Labs` folder — for example:
+1. Open a **terminal** and navigate to the `IAG-CustomAgent-Labs` folder — for example:
 
 ```powershell
-   cd c:\dev\CustomAgent-Labs
+   cd c:\dev\IAG-CustomAgent-Labs
 ```
 
 2. Open the folder in VS Code:
@@ -50,7 +50,7 @@ You will use the same repository from Labs 1 and 2. If you no longer have it, re
 3. In the **Explorer** panel, confirm the folder structure includes:
 
 ```
-   CustomAgent-Labs/
+   IAG-CustomAgent-Labs/
    ├── .github/
    │   ├── agents/
    │   │   ├── _subagents/
@@ -112,7 +112,7 @@ The Quiz Agent generates the same quiz content regardless of format. The skill i
 1. In the **Explorer** panel, expand `.github/skills/`. You should see the skills hacve been addded
 
 ```
-   CustomAgent-Labs/
+   IAG-CustomAgent-Labs/
    ├── .github/
    │   ├── agents/
    │   │   ├── _subagents/

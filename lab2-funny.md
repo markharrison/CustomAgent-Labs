@@ -36,10 +36,10 @@ To read more about Subagents in VSCode - check [https://code.visualstudio.com/do
 
 You will use the same starter repository from Lab 1. If you no longer have it, re-clone it now (see Lab 1, Step 1).
 
-1. Open a **terminal** and navigate to the `CustomAgent-Labs` folder - for example:
+1. Open a **terminal** and navigate to the `IAG-CustomAgent-Labs` folder - for example:
 
 ```powershell
-   cd c:\dev\CustomAgent-Labs
+   cd c:\dev\IAG-CustomAgent-Labs
 ```
 
 2. Open the folder in VS Code:
@@ -51,7 +51,7 @@ You will use the same starter repository from Lab 1. If you no longer have it, r
 3. In the **Explorer** panel, confirm the folder structure includes:
 
 ```
-   CustomAgent-Labs/
+   IAG-CustomAgent-Labs/
    ├── .github/
    │   ├── agents/
    │   │   ├── _subagents/
